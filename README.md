@@ -2,6 +2,15 @@
 
 This repository contains a Dockerised version for llamafile with support for CPU and GPU builds. The `Dockerfile.gpu` is based on the [official CUDA image](https://hub.docker.com/r/nvidia/cuda/).
 
+## Utility Scripts
+The `scripts` directory contains a utility script to download models from the hugging face model hub and run the docker image. The script can be used as follows:
+1. Download a model from the hugging face model hub:
+```bash
+python scripts/main.py download https://huggingface.co/jartine/llava-v1.5-7B-GGUF/blob/main/llava-v1.5-7b-Q4_K.gguf
+```
+> To pass any raw arguments to the `llamafile` executable, use the `--extra-args` flag with `run` and then any flag you want to pass after it. 
+
+
 ## Docker Hub
 The docker images are available on Docker Hub at [gauransh/llamafile-docker](https://hub.docker.com/r/gauransh/llamafile-docker). The images are tagged as `latest` and `latest-gpu` for CPU and GPU builds respectively.
 Currently, the latest refers to `v0.6` of llamafile [release](https://github.com/Mozilla-Ocho/llamafile/releases/tag/0.6).
@@ -20,7 +29,8 @@ Currently, the latest refers to `v0.6` of llamafile [release](https://github.com
 
 >  Example: `docker run --gpus all -v ./models:/app/models -p 7777:8080 gauransh/llamafile-docker:latest-gpu run --gpu 33 -m https://huggingface.co/TheBloke/Code-13B-GGUF/blob/main/code-13b.Q2_K.gguf`
 
-
+> **Model Persistance**: The models weights are saved in the `/app/models` directory in the container. To persist the models, attach a volume to the container at this path. Check Usage above for an example.
+ 
 ## Script Usage:
 
 ```
