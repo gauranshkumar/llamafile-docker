@@ -32,7 +32,7 @@ Currently, the latest refers to `v0.6` of llamafile [release](https://github.com
 > **Model Persistance**: The models weights are saved in the `/app/models` directory in the container. To persist the models, attach a volume to the container at this path. Check Usage above for an example.
  
 ## Script Usage:
-
+Parameters that can be passed to the scripts.
 ```
 python scripts/main.py -h          
 usage: Llamafile Docker Utility [-h] {run,download} ...
