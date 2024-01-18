@@ -1,0 +1,27 @@
+FROM nvidia/cuda:12.3.1-devel-ubuntu22.04
+
+ARG VERSION=0.6
+
+RUN apt-get update && apt-get install -y \
+    curl gcc-9 python3-pip\
+    && rm -rf /var/lib/apt/lists/*
+
+# RUN update-alternatives --install /usr/bin/gcc gcc ${which gcc-9} 100
+# RUN update-alternatives --install /usr/bin/g++ g++ ${which g++-9} 100
+
+# Path: /app
+WORKDIR /app
+
+RUN curl -sSLo /app/llamafile https://github.com/Mozilla-Ocho/llamafile/releases/download/${VERSION}/llamafile-${VERSION} && \
+    chmod +x /app/llamafile
+
+# Path: /app/requirements.txt
+COPY requirements.txt requirements.txt
+
+# Path: /app
+RUN pip install -r requirements.txt
+
+# Path: /app
+COPY scripts scripts
+
+ENTRYPOINT [ "python3", "scripts/main.py" ]

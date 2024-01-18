@@ -31,6 +31,8 @@ def download_model(url, filename=None):
         with path.open("wb") as f:
             shutil.copyfileobj(r_raw, f)
 
+    return filename
+
 
 def format_url(url):
     repo_name = url.split("/")[3] + "/" + url.split("/")[4]
