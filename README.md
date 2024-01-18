@@ -2,6 +2,10 @@
 
 This repository contains a Dockerised version for llamafile with support for CPU and GPU builds. The `Dockerfile.gpu` is based on the [official CUDA image](https://hub.docker.com/r/nvidia/cuda/).
 
+## Docker Hub
+The docker images are available on Docker Hub at [gauransh/llamafile-docker](https://hub.docker.com/r/gauransh/llamafile-docker). The images are tagged as `latest` and `latest-gpu` for CPU and GPU builds respectively.
+Currently, the latest refers to `v0.6` of llamafile [release](https://github.com/Mozilla-Ocho/llamafile/releases/tag/0.6).
+
 ## Pre-requisites
 1. Install [Docker](https://docs.docker.com/get-docker/) on your host machine.
 > **Only needed for GPU usage**
